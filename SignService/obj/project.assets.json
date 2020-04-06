@@ -5916,11 +5916,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/TalH/Desktop/DocusignProject/SignService/SignService/SignService.csproj",
+      "projectUniqueName": "/Users/TalH/Documents/Projects/Sign-Service/SignService/SignService.csproj",
       "projectName": "SignService",
-      "projectPath": "/Users/TalH/Desktop/DocusignProject/SignService/SignService/SignService.csproj",
+      "projectPath": "/Users/TalH/Documents/Projects/Sign-Service/SignService/SignService.csproj",
       "packagesPath": "/Users/TalH/.nuget/packages/",
-      "outputPath": "/Users/TalH/Desktop/DocusignProject/SignService/SignService/obj/",
+      "outputPath": "/Users/TalH/Documents/Projects/Sign-Service/SignService/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/TalH/.config/NuGet/NuGet.Config"
