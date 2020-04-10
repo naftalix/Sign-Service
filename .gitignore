@@ -9,7 +9,6 @@ SignService/bin/
 obj/
 bin/
 .vs/
-SignService/appsettings.Development.json
 
 # Build results
 [Dd]ebug/
