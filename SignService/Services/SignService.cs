@@ -32,7 +32,7 @@ namespace SignService
             _mapPath = filePath;
 
             using (StreamReader r = new StreamReader(filePath))
-            { 
+            {
                 string json = r.ReadToEnd();
 
                 dynamic map = JsonConvert.DeserializeObject(json);
@@ -46,7 +46,7 @@ namespace SignService
                 _mapContext = mapData;
             }
         }
-    
+
         private void UpdateStorageMap()
         {
             _storage.UpdateData(_mapId, _mapContext.ToByteArray());
@@ -55,6 +55,11 @@ namespace SignService
 
         public UserModel CreateUser(string name, string lastName, string email)
         {
+            if (IsUserExist(name))
+            {
+                throw new ArgumentException($"The user: {name} is already exist");
+            }
+
             var dataModel = new UserModel
             {
                 Name = name,
@@ -75,6 +80,11 @@ namespace SignService
 
         public void DeleteUser(string name)
         {
+            if (!IsUserExist(name))
+            {
+                throw new ArgumentException($"Can't Delete, the user: {name} is not exist");
+            }
+
             var userStorageKey = _mapContext[name];
 
             _storage.DeleteData(userStorageKey);
@@ -96,10 +106,12 @@ namespace SignService
 
         }
 
-        public Tuple<string,int> GenerateUserSigningKey(string userName, int keySize)
+        public Tuple<string, int> GenerateUserSigningKey(string userName, int keySize)
         {
-            var key = _signEngine.GenerateKeyPair(keySize);
             var user = GetUser(userName);
+
+            var key = _signEngine.GenerateKeyPair(keySize);
+
             var userStorageKey = _mapContext[userName];
 
             user.Keys.Add(key);
@@ -115,11 +127,16 @@ namespace SignService
 
         public UserModel GetUser(string name)
         {
+            if (!IsUserExist(name))
+            {
+                throw new ArgumentException($"User name: {name} is not exist");
+            }
+
             var userStorageKey = _mapContext[name];
 
             var userBinaryData = _storage.GetData(userStorageKey);
 
-            var result =  userBinaryData.FromByteArray<UserModel>();
+            var result = userBinaryData.FromByteArray<UserModel>();
             return result;
 
         }
@@ -129,6 +146,13 @@ namespace SignService
             var user = GetUser(name);
 
             return user.Keys.Where(k => k == keyId).First();
+        }
+
+        private bool IsUserExist(string name)
+        {
+            var userKey = _mapContext.Where(kv => kv.Key == name).FirstOrDefault();
+
+            return userKey.IsNotNull() ? true : false;
         }
     }
 }

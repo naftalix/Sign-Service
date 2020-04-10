@@ -61,6 +61,12 @@ namespace SignService.Infrastructure
             }
         }
 
+        public static void ArgumentNotEmptyString(string argumentValue, string argumentName)
+        {
+            if (argumentValue.Trim().Length == 0)
+                throw new ArgumentException("string cannot be empty ", argumentName);
+        }
+
         public static byte[] ToByteArray<T>(this T obj)
         {
             if (obj == null)
