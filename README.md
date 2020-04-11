@@ -5,4 +5,4 @@
 
 * Each file can be signed to user by digital signiture.
 
-* The Node.js file repository server will later be uploaded here as a separate GitHub repository.
+* The Node.js repository server will later be uploaded here as a separate GitHub repository.
