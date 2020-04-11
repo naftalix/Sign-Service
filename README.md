@@ -1,4 +1,4 @@
-# RESTful Sign Service
+# RESTful Sign & Storage API
  
  
 * An ongoing RESTful project over .NetCore for upload files and save them as a binary repository implemented as a Node.js server.
