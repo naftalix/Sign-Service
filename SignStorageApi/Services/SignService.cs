@@ -1,27 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
-using System.Text.Json.Serialization;
 using Microsoft.Extensions.Hosting;
-using Newtonsoft.Json;
-using SignService.Models;
-using SignService.Infrastructure;
+using SignStorageApi.Models;
+using SignStorageApi.Infrastructure;
 using System.Linq;
+using Newtonsoft.Json;
 
-namespace SignService
+namespace SignStorageApi.Services
 {
     public class SignService : ISignService
     {
 
         private readonly ISignEngine _signEngine;
-        private readonly IStorage _storage;
+        private readonly IStorageClientService _storage;
         private readonly IHostEnvironment _host;
         private readonly string _mapPath;
         private readonly string _mapId;
         private Dictionary<string, string> _mapContext;
 
-        public SignService(ISignEngine signEngine, IStorage storage, IHostEnvironment host)
+        public SignService(ISignEngine signEngine, IStorageClientService storage, IHostEnvironment host)
         {
             _signEngine = signEngine;
             _storage = storage;
@@ -31,7 +29,7 @@ namespace SignService
             var filePath = Path.Combine(uploadFolder, "map.json");
             _mapPath = filePath;
 
-            using (StreamReader r = new StreamReader(filePath))
+            using (var r = new StreamReader(filePath))
             {
                 string json = r.ReadToEnd();
 
@@ -39,7 +37,7 @@ namespace SignService
 
                 _mapId = (string)map.Id;
 
-                var mapBinaryData = _storage.GetData(_mapId);
+                var mapBinaryData = _storage.GetData(_mapId).GetAwaiter().GetResult();
 
                 var mapData = mapBinaryData.FromByteArray<Dictionary<string, string>>();
 
@@ -69,7 +67,7 @@ namespace SignService
 
             var binaryData = dataModel.ToByteArray();
 
-            var binaryModelKey = _storage.AddData(binaryData);
+            var binaryModelKey = _storage.AddData(binaryData).GetAwaiter().GetResult();
 
             _mapContext.Add(name, binaryModelKey);
 
@@ -134,7 +132,7 @@ namespace SignService
 
             var userStorageKey = _mapContext[name];
 
-            var userBinaryData = _storage.GetData(userStorageKey);
+            var userBinaryData = _storage.GetData(userStorageKey).GetAwaiter().GetResult();
 
             var result = userBinaryData.FromByteArray<UserModel>();
             return result;

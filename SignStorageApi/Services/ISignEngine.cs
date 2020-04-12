@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SignService
+namespace SignStorageApi.Services
 {
     public interface ISignEngine
     {

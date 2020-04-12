@@ -10,8 +10,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using SignStorageApi.Services;
 
-namespace SignService
+namespace SignStorageApi
 {
     public class Startup
     {
@@ -29,15 +30,16 @@ namespace SignService
 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "SignService Api", Version = "v1" });
+                c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "SignStorageApi Api", Version = "v1" });
 
             });
 
 
             services.AddSingleton<ISignEngine, SignEngine>();
-            services.AddSingleton<IStorage, Storage>();
             services.AddSingleton<ISignService, SignService>();
-            
+
+            services.AddHttpClient<IStorageClientService, StorageClientService>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

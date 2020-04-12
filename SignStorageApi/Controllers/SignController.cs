@@ -5,12 +5,13 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using SignService.Infrastructure;
-using SignService.Models;
+using SignStorageApi.Infrastructure;
+using SignStorageApi.Models;
+using SignStorageApi.Services;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace SignService.Controllers
+namespace SignStorageApi.Controllers
 {
     [ApiController]
     [Route("[controller]")]
