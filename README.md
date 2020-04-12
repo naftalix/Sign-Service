@@ -1,8 +1,10 @@
 # RESTful Sign & Storage API
  
  
-* An ongoing RESTful project over .NetCore for upload files and save them as a binary repository implemented as a Node.js server.
+* An ongoing multitech RESTful project for upload and save files as a binary repository
 
 * Each file can be signed to user by digital signiture.
+
+* The RESTful API and the Sign service are implemented over .NetCore, the Storage server over a Node.js.
 
 * The Node.js repository server will later be uploaded here as a separate GitHub repository.
