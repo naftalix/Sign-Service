@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text.Json.Serialization;
 
-namespace SignService.Models
+namespace SignStorageApi.Models
 {
     public class UserModel
     {

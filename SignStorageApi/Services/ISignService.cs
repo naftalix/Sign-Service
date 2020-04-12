@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using SignService.Models;
+using SignStorageApi.Models;
 
-namespace SignService
+namespace SignStorageApi.Services
 {
     public interface ISignService
     {

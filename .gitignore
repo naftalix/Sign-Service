@@ -4,8 +4,8 @@
 *.user
 *.sln.docstates
 
-SignService/obj/
-SignService/bin/
+SignStorageApi/obj/
+SignStorageApi/bin/
 obj/
 bin/
 .vs/
@@ -222,4 +222,4 @@ project.lock.json
 #####
 # End of core ignore list, below put you custom 'per project' settings (patterns or path)
 #####
-SignService/appsettings.Development.json
+SignStorageApi/appsettings.Development.json

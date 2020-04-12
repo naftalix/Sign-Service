@@ -1,0 +1,29 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignStorageApi", "SignStorageApi\SignStorageApi.csproj", "{BDF78E10-5345-4F11-8CD0-B149CFDD801A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignStorageApiTest", "SignStorageApiTest\SignStorageApiTest.csproj", "{180A3384-7514-4EDC-B34E-B4F7753A4DBA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BDF78E10-5345-4F11-8CD0-B149CFDD801A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BDF78E10-5345-4F11-8CD0-B149CFDD801A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BDF78E10-5345-4F11-8CD0-B149CFDD801A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BDF78E10-5345-4F11-8CD0-B149CFDD801A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{180A3384-7514-4EDC-B34E-B4F7753A4DBA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{180A3384-7514-4EDC-B34E-B4F7753A4DBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{180A3384-7514-4EDC-B34E-B4F7753A4DBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{180A3384-7514-4EDC-B34E-B4F7753A4DBA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		Policies = $0
+		$0.DotNetNamingPolicy = $1
+		$1.DirectoryNamespaceAssociation = PrefixedHierarchical
+		$0.StandardHeader = $2
+	EndGlobalSection
+EndGlobal

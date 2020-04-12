@@ -5,7 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 
-namespace SignService.Infrastructure
+namespace SignStorageApi.Infrastructure
 {
     public static class Extentions
     {
