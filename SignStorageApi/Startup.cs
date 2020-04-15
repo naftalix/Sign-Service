@@ -34,12 +34,7 @@ namespace SignStorageApi
 
             });
 
-
-            services.AddSingleton<ISignEngine, SignEngine>();
-            services.AddSingleton<ISignService, SignService>();
-
-            services.AddHttpClient<IStorageClientService, StorageClientService>();
-
+            services.UseServices();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
