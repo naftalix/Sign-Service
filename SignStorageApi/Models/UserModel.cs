@@ -5,6 +5,7 @@ using System.Text.Json.Serialization;
 
 namespace SignStorageApi.Models
 {
+    [Serializable]
     public class UserModel
     {
 

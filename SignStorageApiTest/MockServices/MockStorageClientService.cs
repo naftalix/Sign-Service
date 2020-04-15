@@ -4,6 +4,7 @@ using System.IO;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using SignStorageApi.Services;
 
 namespace SignStorageApiTest
 {
@@ -47,9 +48,9 @@ namespace SignStorageApiTest
                 byte[] data = await File.ReadAllBytesAsync(Path.Combine(m_storagePath, dataID));
                 return data;
             }
-            catch (FileNotFoundException fex)
+            catch (FileNotFoundException ex)
             {
-                return null;
+                throw ex;
             }
 
         }
