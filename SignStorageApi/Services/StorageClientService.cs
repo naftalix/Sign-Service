@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -24,14 +25,14 @@ namespace SignStorageApi.Services
             //Directory.CreateDirectory(m_storagePath);
         }
 
-        
 
-       // private readonly string m_storagePath = null;
+
+        // private readonly string m_storagePath = null;
 
         //Currently using a synchronize method
         public async Task<string> AddData(byte[] data)
         {
-            var content = new ByteArrayContent(data);
+            var content = CreateHttpStreamContent(data);
 
             var response = await Client.PostAsync("storage/store", content);
 
@@ -50,7 +51,7 @@ namespace SignStorageApi.Services
 
         public async Task UpdateData(string dataID, byte[] newData)
         {
-            var content = new ByteArrayContent(newData);
+            var content = CreateHttpStreamContent(newData);
 
             var response = await Client.PutAsync($"storage/update/{dataID}", content);
 
@@ -87,6 +88,13 @@ namespace SignStorageApi.Services
             //    return null;
             //}
 
+        }
+
+        private ByteArrayContent CreateHttpStreamContent(byte[] data)
+        {
+            var content = new ByteArrayContent(data);
+            content.Headers.ContentType = new MediaTypeHeaderValue("application/octet-stream");
+            return content;
         }
     }
 }
