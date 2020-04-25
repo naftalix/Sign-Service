@@ -26,6 +26,14 @@ namespace SignStorageApi.Services
             _host = host;
 
             var uploadFolder = Path.Combine(_host.ContentRootPath, "MapContextStorage");
+
+            bool exists = Directory.Exists(uploadFolder) && File.Exists($"{uploadFolder}/map.json");
+
+            if (!exists)
+            {
+                CreateMap(uploadFolder);
+            }
+
             var filePath = Path.Combine(uploadFolder, "map.json");
             _mapPath = filePath;
 
@@ -35,7 +43,7 @@ namespace SignStorageApi.Services
 
                 dynamic map = JsonConvert.DeserializeObject(json);
 
-                _mapId = (string)map.Id;
+                _mapId = (string)map.id;
 
                 var mapBinaryData = _storage.GetData(_mapId).GetAwaiter().GetResult();
 
@@ -43,6 +51,20 @@ namespace SignStorageApi.Services
 
                 _mapContext = mapData;
             }
+        }
+
+        private void CreateMap(string uploadFolderPath)
+        {
+            Directory.CreateDirectory(uploadFolderPath);
+
+            var guid = Guid.NewGuid();
+
+            string jsonMapId = JsonConvert.SerializeObject(new { id = guid });
+
+            using (TextWriter tw = new StreamWriter($"{uploadFolderPath}/map.json"))
+            {
+                tw.WriteLine(jsonMapId);
+            };
         }
 
         private void UpdateStorageMap()

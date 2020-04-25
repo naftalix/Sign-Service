@@ -9,7 +9,7 @@ SignStorageApi/bin/
 obj/
 bin/
 .vs/
-
+SignStorageApi/MapContextStorage/
 
 # Build results
 [Dd]ebug/
