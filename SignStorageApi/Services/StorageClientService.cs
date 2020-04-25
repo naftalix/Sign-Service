@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
 
 namespace SignStorageApi.Services
 {
@@ -12,10 +13,15 @@ namespace SignStorageApi.Services
     {
         public HttpClient Client { get; }
 
-        public StorageClientService(HttpClient client)
+        private readonly IConfiguration Configuration;
+
+        public StorageClientService(HttpClient client, IConfiguration configuration)
         {
-            //example for now
-            client.BaseAddress = new Uri("https://api.github.com/");
+            Configuration = configuration;
+
+            var storageServerUri = Configuration["StorageServer"];
+
+            client.BaseAddress = new Uri(storageServerUri);
 
             Client = client;
 
@@ -53,7 +59,7 @@ namespace SignStorageApi.Services
         {
             var content = CreateHttpStreamContent(newData);
 
-            var response = await Client.PutAsync($"storage/update/{dataID}", content);
+            var response = await Client.PutAsync($"storage/{dataID}", content);
 
             response.EnsureSuccessStatusCode();
 
@@ -94,6 +100,10 @@ namespace SignStorageApi.Services
         {
             var content = new ByteArrayContent(data);
             content.Headers.ContentType = new MediaTypeHeaderValue("application/octet-stream");
+            content.Headers.ContentDisposition = new ContentDispositionHeaderValue("attachments")
+            {
+                FileName = "dataArray"
+            };
             return content;
         }
     }
