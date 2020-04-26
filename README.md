@@ -7,4 +7,23 @@
 
 * The RESTful API and the Sign service are implemented over .NetCore, the Storage server over a Node.js.
 
-* The Node.js repository server will later be uploaded here as a separate GitHub repository.
+* The Node.js storage server uploaded here as a separate GitHub repository named [StorageAPI]( https://github.com/naftalix/StorageAPI "sdfsdf")
+
+#### You can config your StorageAPI URI enviroment by "StorageServer" key under `appsettings.json` project file
+
+### Example:
+```json
+{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft": "Warning",
+      "Microsoft.Hosting.Lifetime": "Information"
+    }
+  },
+  "AllowedHosts": "*",
+  "StorageServer":  "localhost:3000/storage"
+}
+
+```
+
