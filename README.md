@@ -9,6 +9,9 @@
 
 * The Node.js storage server uploaded here as a separate GitHub repository named [StorageAPI]( https://github.com/naftalix/StorageAPI "sdfsdf")
 
+* Will be added a React UI app for managment files and signs.
+
+
 #### You can config your StorageAPI URI enviroment by "StorageServer" key under `appsettings.json` project file
 
 ### Example:
